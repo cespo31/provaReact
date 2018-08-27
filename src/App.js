@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Button , Grid, Row, Col, Label, Well} from 'react-bootstrap';
+
 
 class App extends Component {
 
@@ -24,49 +24,55 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to Nutrition's App</h1>
+          <h1 className="App-title">Welcome to Nutrition App</h1>
         </header>
-        <Grid >
-          <Row className="show-grid">
-            <p className="App-intro">Calcolo del BMI</p>
-          </Row>
-          <Row className="show-grid">
-              <Col lg = {8}>
-                  <Row className="show-grid">
-                    <Col>
-                    <h1><Label bsStyle="primary">Inserisci i tuoi dati</Label></h1>
-                    </Col>
-                  </Row>
-                  <Row className="show-grid">
-                    <Col xs = {12} md = {6}>
-                      <h4>Altezza</h4>
-                    </Col>
-                    <Col >
-                      <input type="number" min ="0" step=".001" placeholder="Inserisci Altezza" onChange={this.handleChangeAltezza}/>
-                    </Col>
-                  </Row>
-                  <Row className="show-grid">
-                    <Col xs = {12} md = {6}>
-                      <h4>Peso</h4>
-                    </Col>
-                    <Col >
-                      <input type="number" min = "0" placeholder="Inserisci Peso"  onChange={this.handleChangePeso} />
-                    </Col>
-                  </Row>
-                  <Row className="show-grid">
-                    <Col xs = {12} md = {6}>
-                    </Col>
-                    <Col xs = {12} md = {6}>
-                      <Button bsStyle="primary" onClick={this.calcolaBMI}>Calcola</Button>
-                    </Col>
-                  </Row>   
-              </Col>
-              <Col  lg={4}>
-                <p> Il tuo BMI è: {this.state.bmi} !</p>
-                <Well bsSize="large">{this.state.risultato}</Well>
-              </Col>
-          </Row>
-        </Grid>
+        <div className = "container" >
+          <div className = "row" >
+              <div className = "col align-self-center">
+                <h1 >Calcolo del BMI</h1>
+              </div>
+          </div>
+          <div className="row">
+            <div className ="col-sm-12 col-md-8">
+              <div className="row justify-content-center">
+                <div className = "col-sm-12 col-md-6 ">
+                  <h3>Inserisci i tuoi dati</h3>
+                </div>
+            </div>
+            <div className="row justify-content-start">
+              <div className = "col-sm-12 col-md-6 " >
+                <h4>Altezza</h4>
+              </div>
+              <div className = "col-sm-12 col-md-6" >
+                <input type="number" min ="0" step=".001" placeholder="Inserisci Altezza" onChange={this.handleChangeAltezza}/>
+              </div>
+            </div>
+            <div className="row justify-content-start">
+              <div className = "col-sm-12 col-md-6" >
+                <h4>Peso</h4>
+              </div>
+              <div className = "col-sm-12 col-md-6" >
+                <input type="number" min = "0" placeholder="Inserisci Peso"  onChange={this.handleChangePeso} />
+              </div>
+            </div>
+            <div className="row justify-content-end">
+              <div className = "col-sm-12 col-md-6" >
+              </div>
+              <div className = "col-sm-12 col-md-6" >
+                <button type ="button" className="btn btn-primary" onClick={this.calcolaBMI}>Calcola</button>
+              </div>
+            </div>   
+          </div>
+            <div className = "col-sm-12 col-md-4" >
+                <div className="jumbotron jumbotron-fluid">
+                  <div className="container">
+                    <h1 class="display-6">Il tuo BMI è: {this.state.bmi} !</h1>
+                    <p class="lead"> Sei in {this.state.risultato}</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     );
@@ -74,13 +80,14 @@ class App extends Component {
 
 
 componentDidUpdate(prevProps, prevState) {
-  if (this.state.bmi > prevState.bmi) {
+  if (this.state.bmi != prevState.bmi) {
     this.setRisultato();  
   }
 }
 
   calcolaBMI(){
-    this.setState({bmi: this.state.peso / (this.state.altezza*2)});
+    this.setState(
+      {bmi: (this.state.peso / (this.state.altezza*2)).toFixed(2)});
   }
 
   handleChangeAltezza(event){
