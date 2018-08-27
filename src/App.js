@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -27,16 +26,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to Nutrition App</h1>
         </header>
         <div className = "container" >
-          <div className = "row" >
-              <div className = "col align-self-center">
-                <h1 >Calcolo del BMI</h1>
-              </div>
-          </div>
           <div className="row">
-            <div className ="col-sm-12 col-md-8">
+            <div className ="col-sm-12 col-md-6">
               <div className="row justify-content-center">
                 <div className = "col-sm-12 col-md-6 ">
-                  <h3>Inserisci i tuoi dati</h3>
+                  <h3>Calcolo del BMI</h3>
                 </div>
             </div>
             <div className="row justify-content-start">
@@ -63,11 +57,11 @@ class App extends Component {
               </div>
             </div>   
           </div>
-            <div className = "col-sm-12 col-md-4" >
-                <div className="jumbotron jumbotron-fluid">
+            <div className = "col-sm-12 col-md-6" >
+                <div id = "risultato"className="jumbotron jumbotron-fluid">
                   <div className="container">
-                    <h1 class="display-6">Il tuo BMI è: {this.state.bmi} !</h1>
-                    <p class="lead"> Sei in {this.state.risultato}</p>
+                    <p class="lead">Il tuo BMI è: {this.state.bmi} !</p>
+                    <h1 class="display-6" >  {this.state.risultato} </h1>
                   </div>
                 </div>
             </div>
@@ -130,7 +124,7 @@ componentDidUpdate(prevProps, prevState) {
     else if (bmi > 40){
       res = "Obesita grave"
     }
-    this.setState({risultato: res});
+    this.setState({risultato: "Sei in " + res});
   }
 }
 
