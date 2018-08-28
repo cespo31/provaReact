@@ -12,18 +12,88 @@ class BmiTest extends Component {
             bmi: 0,
             risultato : "",
         };
+
         this.calcolaBMI = this.calcolaBMI.bind(this);
-        this.handleChangePeso = this.handleChangePeso.bind(this);
-        this.handleChangeAltezza = this.handleChangeAltezza.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this);
+
+        this.testBmiSpiegazione =
+        <div>
+	        <p> L'indice di massa corporea (abbreviato IMC o BMI, dall'inglese body mass index)
+	        è un dato biometrico, espresso come rapporto tra peso e quadrato dell'altezza di un individuo ed è utilizzato come
+	        un indicatore dello stato di peso forma. </p>
+	        <p>Questo indice è di frequente utilizzato in maniera grossolana, in quanto non integrato da un fattore basilare come
+	        il sesso e da caratteristiche morfologiche di base quali larghezza delle spalle, larghezza ossea del bacino, circonferenza 
+	        cranica, rapporto tra lunghezza delle gambe e lunghezza del tronco, corporatura di tipo tendenzialmente muscoloso o flaccido
+	        e altri fattori. È inoltre fondamentale considerare la percentuale di massa grassa e massa magra del soggetto.
+	        Ad esempio, un paziente di 90 kg e 175 cm di altezza può essere normopeso, se ha una percentuale di massa magra (muscolare)
+	        maggiore della percentuale di massa grassa.
+			Operativamente l'indice di massa corporea si calcola come il rapporto tra la massa-peso, espressa in chilogrammi, 
+			e il quadrato dell'altezza, espressa in metri. </p>
+		</div>
+		this.tabellaBmi = <div id= "tabellaBmi" className="table-responsive">
+			<tbody className="table table-bordered">
+			<tr>
+			<th scope="col">Situazione peso
+			</th>
+			<th scope="col">Min
+			</th>
+			<th scope="col">Max
+			</th>
+			</tr>
+			<tr>
+			<td>Obesità di III classe (gravissima)</td>
+			<td>&gt;40,00</td>
+			<td>
+			</td></tr>
+			<tr>
+			<td>Obesità di II classe (grave)</td>
+			<td>35,01</td>
+			<td>40,00
+			</td></tr>
+			<tr>
+			<td>Obesità di I classe (moderata)</td>
+			<td>30,01</td>
+			<td>35,00
+			</td></tr>
+			<tr>
+			<td>Sovrappeso</td>
+			<td>25,01</td>
+			<td>30,00
+			</td></tr>
+			<tr>
+			<td>Regolare</td>
+			<td>18,51</td>
+			<td>25,00
+			</td></tr>
+			<tr>
+			<td>Leggermente sottopeso</td>
+			<td>17,51</td>
+			<td>18,50
+			</td></tr>
+			<tr>
+			<td>Sottopeso</td>
+			<td>16,01</td>
+			<td>17,50
+			</td></tr>
+			<tr>
+			<td>Grave magrezza</td>
+			<td>&nbsp;</td>
+			<td>&lt;16,01
+			</td></tr></tbody>
+			</div>
 
 }
 
 
+
   render() {
     return (
-        <div className = "container" >
-        <h6 id = "bmiTest"></h6>
-          <div className="row">
+        <div  className = "container" >
+	        <div className="row justify-content-center">
+	        <h2> Il test del BMI </h2>
+	        </div>
+	        <div className="row">{this.testBmiSpiegazione}  {this.tabellaBmi}</div>
+          <div id = "bmiTest" className="row">
             <div className ="col-sm-12 col-md-6">
               <div className="row justify-content-center">
                 <div className = "col-sm-12 col-md-6 ">
@@ -32,18 +102,20 @@ class BmiTest extends Component {
             </div>
             <div className="row justify-content-start">
               <div className = "col-sm-12 col-md-6 " >
-                <h4>Altezza</h4>
+                <h4>Altezza (m)</h4>
               </div>
               <div className = "col-sm-12 col-md-6" >
-                <input type="number" min ="0" step=".001" placeholder="Inserisci Altezza (m)" onChange={this.handleChangeAltezza}/>
+                <input type="number" min ="0" step=".001" placeholder="Inserisci Altezza (m)" 
+                name = "altezza" onChange={this.handleInputChange}/>
               </div>
             </div>
             <div className="row justify-content-start">
               <div className = "col-sm-12 col-md-6" >
-                <h4>Peso</h4>
+                <h4>Peso (kg)</h4>
               </div>
               <div className = "col-sm-12 col-md-6" >
-                <input type="number" min = "0" placeholder="Inserisci Peso (kg)"  onChange={this.handleChangePeso} />
+                <input type="number" min = "0" step=".001" placeholder="Inserisci Peso (kg)" 
+                name = "peso" onChange={this.handleInputChange} />
               </div>
             </div>
             <div className="row justify-content-end">
@@ -53,12 +125,12 @@ class BmiTest extends Component {
                 <button type ="button" className="btn btn-primary" onClick={this.calcolaBMI}>Calcola</button>
               </div>
             </div>   
-          </div>
+          	</div>
             <div className = "col-sm-12 col-md-6" >
-                <div id = "risultato"className="jumbotron jumbotron-fluid">
+                <div id = "risultato" className="jumbotron jumbotron-fluid">
                   <div className="container">
-                    <p class="lead">Il tuo BMI è: {this.state.bmi} !</p>
-                    <h1 class="display-6" >  {this.state.risultato} </h1>
+                    <p className="lead">Il tuo BMI è: {this.state.bmi} !</p>
+                    <h1 className="display-6" >  {this.state.risultato} </h1>
                   </div>
                 </div>
             </div>
@@ -77,17 +149,19 @@ componentDidUpdate(prevProps, prevState) {
 
   calcolaBMI(){
     this.setState(
-      {bmi: (this.state.peso / (this.state.altezza*2)).toFixed(2)});
+      {bmi: (this.state.peso / (this.state.altezza * this.state.altezza)).toFixed(2)});
   }
 
-  handleChangeAltezza(event){
-    this.setState({altezza: event.target.value});
-    console.log(this.state.altezza)
+handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
-  handleChangePeso(event){
-    this.setState({peso: event.target.value});
-  }
 
   setRisultato(){
     // Sottopeso severo: minore di 16.5
@@ -122,6 +196,7 @@ componentDidUpdate(prevProps, prevState) {
     }
     this.setState({risultato: "Sei in " + res});
   }
+
 }
 
 export default BmiTest;

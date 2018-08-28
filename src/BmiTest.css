@@ -1,3 +1,23 @@
 #risultato {
   text-align: center;
+  margin-bottom: 0rem;
+}
+
+#bmiTest {
+	border-style: solid;
+	border-width: 1 rem;
+	border-color: black;
+}
+
+#tabellaBmi {
+    border-radius: 1rem;
+    margin: 0px auto;
+    margin-bottom: 2rem;
+    float: none;
+}
+
+@media screen and (min-width: 640px) {
+	#tabellaBmi {
+		width: 50%;
+	}
 }

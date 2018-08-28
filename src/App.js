@@ -5,26 +5,21 @@ import BmiTest from './BmiTest.js'
 
 class App extends Component {
 
- constructor(){
-        super();
-}
-
-
   render() {
     return (
       <div className="App">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">Nutrition App</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+          <a className="navbar-brand" href="#home">Nutrition App</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-               <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#bmiTest">BMITest</a>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+{/*              <li className="nav-item active">
+               <a className="nav-link" href="#home">Home </a>
+              </li>*/}
+              <li className="nav-item">
+                <a className="nav-link" href="#bmiTest">BMITest</a>
               </li>
 {/*              <li class="nav-item">
                 <a class="nav-link" href="#">Contatti</a>
@@ -32,9 +27,7 @@ class App extends Component {
 */}           </ul>
           </div>
         </nav>
-
-        <h6 id = "home"></h6>
-        <div className = "container">
+        <div id = "home" className = "container">
           <h2 id="intro"> Benvenuto nel sito</h2>
           <h4> L'alimentazione corretta </h4>
           <p>Un'alimentazione sana è quella che fornisce tramite gli alimenti assunti quotidianamente la quantità di nutrienti che corrisponde al proprio fabbisogno. La nutrizione, come tutte le scienze, è in continua evoluzione e l'acquisizione di nuovi dati e nuovi studi fa sì che le raccomandazioni per una dieta corretta vengano periodicamente aggiornate in funzione delle nuove conoscenze.
@@ -64,7 +57,6 @@ In luce di ciò si può quindi determinare il sovrappeso e l'obesità come segue
 </ul>
 Se ne conviene che non tutte le persone in sovrappeso sono anche obese, e non tutte le persone obese sono in sovrappeso. </p>
         </div>
-
         <BmiTest />
       </div>
     );
